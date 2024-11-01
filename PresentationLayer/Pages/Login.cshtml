@@ -1,0 +1,29 @@
+﻿@page
+@model PresentationLayer.Pages.LoginModel
+@{
+}
+<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<h2 class="text-center">Login</h2>
+			<form method="post" class="mt-4">
+				<div class="form-group">
+					<label class="control-label"></label>
+					<input class="form-control" placeholder="Enter your email" name="txtEmail" />
+					<span class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label class="control-label"></label>
+					<input type="password" class="form-control" placeholder="Enter your password" name="txtPassword" />
+					<span class="text-danger"></span>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
+				<button type="reset" class="btn btn-primary btn-block mt-3">Reset</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+} 

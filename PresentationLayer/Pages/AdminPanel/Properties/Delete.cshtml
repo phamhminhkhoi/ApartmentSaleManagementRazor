@@ -1,0 +1,87 @@
+﻿@page
+@model PresentationLayer.Pages.Properties.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Property";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg" style="background-color: #fff; color: #333; border-radius: 15px;">
+                <div class="card-header text-center" style="background-color: #dc3545; color: #fff; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    <h2>Delete Property</h2>
+                </div>
+                <div class="card-body p-4">
+                    <h3 class="text-danger">Are you sure you want to delete this?</h3>
+                    <div>
+                        <h4>Property Details</h4>
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-4 font-weight-bold">
+                                @Html.DisplayNameFor(model => model.Property.PropertyName)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Property.PropertyName)
+                            </dd>
+                            <dt class="col-sm-4 font-weight-bold">
+                                @Html.DisplayNameFor(model => model.Property.Location)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Property.Location)
+                            </dd>
+                            <dt class="col-sm-4 font-weight-bold">
+                                @Html.DisplayNameFor(model => model.Property.Description)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Property.Description)
+                            </dd>
+                            <dt class="col-sm-4 font-weight-bold">
+                                @Html.DisplayNameFor(model => model.Property.Price)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Property.Price)
+                            </dd>
+                            <dt class="col-sm-4 font-weight-bold">
+                                @Html.DisplayNameFor(model => model.Property.SizeSqFt)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Property.SizeSqFt)
+                            </dd>
+                            <dt class="col-sm-4 font-weight-bold">
+                                @Html.DisplayNameFor(model => model.Property.Bedrooms)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Property.Bedrooms)
+                            </dd>
+                            <dt class="col-sm-4 font-weight-bold">
+                                @Html.DisplayNameFor(model => model.Property.Bathrooms)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Property.Bathrooms)
+                            </dd>
+                            <dt class="col-sm-4 font-weight-bold">
+                                @Html.DisplayNameFor(model => model.Property.Category)
+                            </dt>
+                            <dd class="col-sm-8">
+                                @Html.DisplayFor(model => model.Property.Category.CategoryName)
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <form method="post" class="text-center mt-4">
+                        <input type="hidden" asp-for="Property.PropertyId" />
+                        <button type="submit" class="btn btn-danger btn-lg px-4">Delete</button>
+                        <a asp-page="./Index" class="btn btn-outline-secondary btn-lg px-4 ml-2">Back to List</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

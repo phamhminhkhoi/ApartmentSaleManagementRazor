@@ -1,0 +1,86 @@
+﻿@page
+@using BusinessObjectLayer
+@using BusinessObjectLayer.Model
+@model PresentationLayer.Pages.Properties.CreateModel
+
+@{
+    ViewData["Title"] = "Create Property";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg" style="background-color: #fff; color: #333; border-radius: 15px;">
+                <div class="card-header text-center" style="background-color: #333; color: #fff; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    <h2>Create Property</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-group">
+                            <label asp-for="Property.PropertyName" class="control-label font-weight-bold">Property Name</label>
+                            <input asp-for="Property.PropertyName" class="form-control border-dark shadow-sm rounded" placeholder="Enter property name" />
+                            <span asp-validation-for="Property.PropertyName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Property.Location" class="control-label font-weight-bold">Location</label>
+                            <input asp-for="Property.Location" class="form-control border-dark shadow-sm rounded" placeholder="Enter location" />
+                            <span asp-validation-for="Property.Location" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Property.Description" class="control-label font-weight-bold">Description</label>
+                            <textarea asp-for="Property.Description" class="form-control border-dark shadow-sm rounded" rows="3" placeholder="Enter description"></textarea>
+                            <span asp-validation-for="Property.Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Property.Price" class="control-label font-weight-bold">Price</label>
+                            <input asp-for="Property.Price" class="form-control border-dark shadow-sm rounded" placeholder="Enter price" />
+                            <span asp-validation-for="Property.Price" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Property.SizeSqFt" class="control-label font-weight-bold">Size (sq ft)</label>
+                            <input asp-for="Property.SizeSqFt" class="form-control border-dark shadow-sm rounded" placeholder="Enter size in sq ft" />
+                            <span asp-validation-for="Property.SizeSqFt" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Property.Bedrooms" class="control-label font-weight-bold">Bedrooms</label>
+                            <input asp-for="Property.Bedrooms" class="form-control border-dark shadow-sm rounded" placeholder="Enter number of bedrooms" />
+                            <span asp-validation-for="Property.Bedrooms" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Property.Bathrooms" class="control-label font-weight-bold">Bathrooms</label>
+                            <input asp-for="Property.Bathrooms" class="form-control border-dark shadow-sm rounded" placeholder="Enter number of bathrooms" />
+                            <span asp-validation-for="Property.Bathrooms" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Property.CategoryId" class="control-label font-weight-bold">Choose a Category:</label>
+                            <select asp-for="Property.CategoryId" asp-items="Model.CategorySelectList" class="form-control border-dark shadow-sm rounded">
+                                <option value="">-- Select a Category --</option>
+                            </select>
+                            <span asp-validation-for="Property.CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group text-center mt-4">
+                            <button type="submit" class="btn btn-dark btn-lg px-4">Create</button>
+                            <a asp-page="Index" class="btn btn-outline-dark btn-lg px-4 ml-2">Back to List</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

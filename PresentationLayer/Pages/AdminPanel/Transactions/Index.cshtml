@@ -1,0 +1,158 @@
+﻿@page
+@model PresentationLayer.Pages.Transactions.IndexModel
+
+@{
+    ViewData["Title"] = "Transactions";
+    int roleID = int.Parse(HttpContext.Session.GetString("RoleID"));
+    if (roleID != 1)
+    {
+        Response.Redirect("/Permission");
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions - PresentationLayer</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 240px;
+            background-color: #1a202c;
+            color: #fff;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+            .sidebar h5 {
+                color: #cbd5e0;
+                font-size: 1.2rem;
+                margin: 15px 15px 20px;
+            }
+
+            .sidebar a {
+                color: #cbd5e0;
+                padding: 10px 20px;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                border-radius: 6px;
+                transition: background 0.2s ease;
+            }
+
+                .sidebar a:hover, .sidebar a.active {
+                    background-color: #2d3748;
+                    color: #e2e8f0;
+                }
+
+
+        .main-content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        .page-header {
+            color: #2d3748;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .table-container {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .table th, .table td {
+            text-align: left;
+            vertical-align: middle;
+            padding: 10px;
+        }
+
+        .table th {
+            background-color: #4a5568;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .table tbody tr:nth-child(odd) {
+            background-color: #f7fafc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="sidebar">
+                <h5>Admin Panel</h5>
+                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/AdminPanel/Properties/Index" ? "active" : "")" asp-page="/AdminPanel/Properties/Index">
+                    <i class="fas fa-home mr-2"></i> Properties
+                </a>
+                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/AdminPanel/Members/Index" ? "active" : "")" asp-page="/AdminPanel/Members/Index">
+                    <i class="fas fa-users mr-2"></i> Members
+                </a>
+                <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/AdminPanel/Transactions/Index" ? "active" : "")" asp-page="/AdminPanel/Transactions/Index">
+                    <i class="fas fa-exchange-alt mr-2"></i> Transactions
+                </a>
+                <a class="nav-link" asp-page="/Login">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </a>
+
+            </nav>
+
+            <main class="main-content">
+                <div class="page-header">
+                    Transactions Management
+                </div>
+                <div class="table-container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Transaction[0].PropertyName)</th>
+                                <th>@Html.DisplayNameFor(model => model.Transaction[0].Price)</th>
+                                <th>@Html.DisplayNameFor(model => model.Transaction[0].BuyerName)</th>
+                                <th>@Html.DisplayNameFor(model => model.Transaction[0].SellerName)</th>
+                                <th>@Html.DisplayNameFor(model => model.Transaction[0].TransactionDate)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Transaction)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.PropertyName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.BuyerName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SellerName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TransactionDate)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
