@@ -19,14 +19,26 @@ namespace PresentationLayer.Pages.Properties
             _propertyService = propertyService;
         }
 
-        public IList<Property> Property { get;set; } = default!;
+        public IList<Property> Property { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string? searchTerm)
         {
-            if(_propertyService.GetAllProperties() != null)
+            LoadProp();
+            if (searchTerm == null) { return; }
+            var searchedProp = new List<Property>();
+            foreach (var item in _propertyService.GetAllProperties())
             {
-                Property = _propertyService.GetAllProperties();
+                if (item.PropertyName.ToLower().Contains(searchTerm.ToLower()) || item.Location.ToLower().Contains(searchTerm.ToLower()))
+                {
+                    searchedProp.Add(item);
+                }
             }
+            Property = searchedProp;
+        }
+
+        private void LoadProp()
+        {
+            Property = _propertyService.GetAllProperties();
         }
     }
 }
