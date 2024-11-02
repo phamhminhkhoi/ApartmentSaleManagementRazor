@@ -21,7 +21,7 @@ namespace PresentationLayer.Pages.Members
 
         public IList<Member> Member { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchTerm)
         {
             var listToShow = _memberService.GetMembers();
             var checkedRole = new List<Member>();

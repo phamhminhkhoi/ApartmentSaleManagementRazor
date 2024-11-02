@@ -46,25 +46,27 @@ namespace PresentationLayer.Pages.Properties
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
-            //_context.Attach(Property).State = EntityState.Modified;
+            ////_context.Attach(Property).State = EntityState.Modified;
 
-            try
-            {
-                _propertyService.UpdateProperty(Property);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                
-                    return NotFound();
-                
-            }
+            //try
+            //{
+            _propertyService.UpdateProperty(Property);
 
             return RedirectToPage("./Index");
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+
+            //        return NotFound();
+
+            //}
+
+            //return RedirectToPage("./Index");
         }
 
         //private bool PropertyExists(int id)

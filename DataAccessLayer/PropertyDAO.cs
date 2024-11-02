@@ -59,15 +59,19 @@ namespace DataAccessLayer
 
         public void UpdateProperty(Property property)
         {
-            var existingProperty = new Property();
-            existingProperty.Bedrooms = property.Bedrooms;
-            existingProperty.Category = property.Category;
-            existingProperty.Bathrooms = property.Bathrooms;
-            existingProperty.PropertyName = property.PropertyName;
-            if (existingProperty != null)
+            var newProp = new Property();
+            newProp.PropertyName = property.PropertyName;
+            newProp.Bedrooms = property.Bedrooms;
+            newProp.Bathrooms = property.Bathrooms;
+            newProp.CategoryId = property.CategoryId;
+            newProp.Description = property.Description;
+            newProp.Location = property.Location;
+            newProp.Price = property.Price;
+            newProp.SizeSqFt = property.SizeSqFt;
+            if (newProp != null)
             {
 
-                _context.Update(existingProperty);
+                _context.Update(newProp);
                 _context.SaveChanges();
             }
         }
